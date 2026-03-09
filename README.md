@@ -1,16 +1,65 @@
-# React + Vite
+# Wordle Clone
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A mobile-friendly, client-side only web application that mimics the popular word-guessing game. Built with React and Tailwind CSS, this clone features an endless play mode, local storage for tracking game statistics, and a responsive design that works perfectly on both desktop and mobile devices.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Endless Mode: Play as many times as you want without waiting for the next day.
+- Accurate Game Logic: Correctly handles duplicate letters and prioritizes exact matches.
+- Game History: Tracks your wins, losses, current streak, max streak, and guess distribution using browser local storage.
+- Authentic Animations: Includes the classic staggered flip reveal animations for guessed words.
+- Mobile Optimized: Designed to fit perfectly on mobile screens without scrolling, including touch-action optimizations to prevent double-tap zooming.
+- Dark Theme: Default dark mode styling for a sleek, modern look.
 
-## React Compiler
+## Technology Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React (Bootstrapped with Vite)
+- Tailwind CSS (For utility-first styling)
+- Headless UI (For accessible modal dialogs)
+- Heroicons (For SVG icons)
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Prerequisites
+
+Make sure you have Node.js (version 16 or higher) and npm installed on your machine.
+
+### Installation
+
+1. Clone the repository or download the source code.
+2. Navigate to the project directory:
+   ```bash
+   cd wordle-clone
+   ```
+3. Install the dependencies:
+   ```bash
+   npm install
+   ```
+
+### Running Locally
+
+To start the development server, run:
+
+```bash
+npm run dev
+```
+
+Open your browser and visit `http://localhost:5173` to play the game.
+
+## Deployment
+
+This project is configured for seamless deployment to Netlify.
+
+### Drag and Drop Deployment
+
+1. Build the project for production:
+   ```bash
+   npm run build
+   ```
+2. A `dist` directory will be created in your project folder.
+3. Log in to Netlify and go to Netlify Drop (app.netlify.com/drop).
+4. Drag and drop the `dist` folder onto the page.
+
+### Git Deployment
+
+Alternatively, push this repository to GitHub, GitLab, or Bitbucket, and connect it to a new Netlify site. Netlify will automatically use the provided `netlify.toml` file to configure the build command (`npm run build`) and publish directory (`dist`).
