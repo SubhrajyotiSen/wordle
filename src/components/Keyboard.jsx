@@ -56,7 +56,7 @@ export const Keyboard = ({ onChar, guesses, isRevealing }) => {
     const baseClass = 'flex items-center justify-center font-bold uppercase rounded h-14 bg-slate-400 text-white cursor-pointer select-none mx-0.5 text-sm sm:text-base px-2 py-1';
 
     if (key === 'ENTER' || key === 'BACKSPACE') {
-      return classNames(baseClass, 'w-16 sm:w-20 bg-slate-500 hover:bg-slate-400 text-xs sm:text-sm');
+      return classNames(baseClass, 'w-12 sm:w-16 bg-slate-500 hover:bg-slate-400 text-xs sm:text-sm');
     }
 
     return classNames(baseClass, 'flex-1 hover:bg-slate-300', {
