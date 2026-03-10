@@ -46,8 +46,8 @@ function App() {
       </header>
 
       {/* Main Game Area */}
-      <main className="flex-grow flex flex-col justify-between max-w-lg mx-auto w-full pt-4 pb-2">
-        <div className="relative flex-grow flex flex-col items-center justify-center">
+      <main className="flex-grow flex flex-col justify-between max-w-lg mx-auto w-full pt-2 pb-2 min-h-0 h-full">
+        <div className="relative flex-grow flex flex-col items-center justify-center min-h-0 w-full h-full">
              {/* Invalid guess toast */}
             {isInvalidGuess && (
             <div className="absolute top-0 z-20 bg-white text-black font-bold py-2 px-4 rounded shadow-lg animate-bounce">
@@ -55,12 +55,14 @@ function App() {
             </div>
             )}
             <Board guesses={guesses} currentGuess={currentGuess} isRevealing={isRevealing} />
-            <div className="mt-2 text-slate-400 text-sm font-medium tracking-wide">
+            <div className="mt-2 text-slate-400 text-sm font-medium tracking-wide shrink-0">
               With ❤️, for Debangana
             </div>
         </div>
 
-        <Keyboard onChar={onKeyPress} guesses={guesses} isRevealing={isRevealing} />
+        <div className="shrink-0 w-full">
+          <Keyboard onChar={onKeyPress} guesses={guesses} isRevealing={isRevealing} />
+        </div>
       </main>
 
       {/* Statistics Modal (Manual Trigger) */}

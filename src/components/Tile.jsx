@@ -39,7 +39,7 @@ export const Tile = ({ value, status, isAnimating, isRevealing, position = 0 }) 
     : {};
 
   return (
-    <div className="w-14 h-14 md:w-16 md:h-16" style={{ perspective: '1000px' }}>
+    <div className="w-full h-full" style={{ perspective: '1000px' }}>
         <div className={classes} style={animationStyle}>
             {value}
         </div>
