@@ -52,7 +52,7 @@ export const useGame = () => {
     return result;
   };
 
-  const updateStats = useCallback((status, numGuesses, currentTarget) => {
+  const updateStats = useCallback((status, newGuesses, currentTarget) => {
       setStats(prevStats => {
           const newStats = { ...prevStats };
           newStats.gamesPlayed += 1;
@@ -61,7 +61,7 @@ export const useGame = () => {
               newStats.gamesWon += 1;
               newStats.currentStreak += 1;
               newStats.maxStreak = Math.max(newStats.currentStreak, newStats.maxStreak);
-              newStats.winDistribution[numGuesses - 1] += 1;
+              newStats.winDistribution[newGuesses.length - 1] += 1;
           } else {
               newStats.currentStreak = 0;
           }
@@ -73,7 +73,8 @@ export const useGame = () => {
               id: Date.now(),
               targetWord: currentTarget,
               status,
-              numGuesses,
+              numGuesses: newGuesses.length,
+              guesses: newGuesses,
               timestamp: new Date().toISOString()
           };
           return [newRecord, ...prevHistory]; // Store newest first
@@ -105,10 +106,10 @@ export const useGame = () => {
           setIsRevealing(false);
           if (currentGuess === targetWord) {
               setGameStatus('won');
-              updateStats('won', newGuesses.length, targetWord);
+              updateStats('won', newGuesses, targetWord);
           } else if (newGuesses.length === MAX_CHALLENGES) {
               setGameStatus('lost');
-              updateStats('lost', newGuesses.length, targetWord);
+              updateStats('lost', newGuesses, targetWord);
           }
         }, 1500);
       } else if (key === 'BACKSPACE') {
