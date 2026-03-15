@@ -128,6 +128,13 @@ export const useGame = () => {
       setGameStatus('playing');
   };
 
+  const loadGame = (game) => {
+      setTargetWord(game.targetWord);
+      setGuesses(game.guesses || []);
+      setCurrentGuess('');
+      setGameStatus(game.status);
+  };
+
   return {
     targetWord,
     guesses,
@@ -138,6 +145,7 @@ export const useGame = () => {
     isInvalidGuess,
     isRevealing,
     onKeyPress,
-    playAgain
+    playAgain,
+    loadGame
   };
 };

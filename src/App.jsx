@@ -18,7 +18,8 @@ function App() {
     isInvalidGuess,
     isRevealing,
     onKeyPress,
-    playAgain
+    playAgain,
+    loadGame
   } = useGame();
 
   const [isStatsOpen, setIsStatsOpen] = useState(false);
@@ -91,7 +92,14 @@ function App() {
         setIsHistoryOpen(false);
         setTimeout(() => document.activeElement?.blur(), 10);
       }} title="Game History">
-        <History history={gameHistory} />
+        <History 
+            history={gameHistory} 
+            onLoadGame={(game) => {
+                loadGame(game);
+                setIsHistoryOpen(false);
+                setTimeout(() => document.activeElement?.blur(), 10);
+            }} 
+        />
         <div className="mt-4 flex justify-center">
             <button
                 onClick={() => {
