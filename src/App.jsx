@@ -4,7 +4,8 @@ import { Board } from './components/Board';
 import { Keyboard } from './components/Keyboard';
 import { Modal } from './components/Modal';
 import { Stats } from './components/Stats';
-import { ChartBarIcon } from '@heroicons/react/24/outline';
+import { History } from './components/History';
+import { ChartBarIcon, ClockIcon } from '@heroicons/react/24/outline';
 
 function App() {
   const {
@@ -13,6 +14,7 @@ function App() {
     currentGuess,
     gameStatus,
     stats,
+    gameHistory,
     isInvalidGuess,
     isRevealing,
     onKeyPress,
@@ -20,6 +22,7 @@ function App() {
   } = useGame();
 
   const [isStatsOpen, setIsStatsOpen] = useState(false);
+  const [isHistoryOpen, setIsHistoryOpen] = useState(false);
   const [showGameEndModal, setShowGameEndModal] = useState(false);
 
   useEffect(() => {
@@ -33,7 +36,12 @@ function App() {
   return (
     <div className="flex flex-col h-[100dvh] bg-[#121213] text-white overflow-hidden font-sans">
       <header className="flex items-center justify-between px-4 h-16 border-b border-slate-700 shrink-0">
-        <div className="w-8"></div> {/* Spacer */}
+        <button 
+          onClick={() => setIsHistoryOpen(true)} 
+          className="p-2 cursor-pointer focus:outline-none focus:ring-2 focus:ring-slate-500 rounded"
+        >
+          <ClockIcon className="w-6 h-6 text-white" />
+        </button>
         <h1 className="text-3xl font-extrabold tracking-wider text-center uppercase">Wordle</h1>
         <button 
           onClick={() => {
@@ -77,6 +85,25 @@ function App() {
           <Keyboard onChar={onKeyPress} guesses={guesses} isRevealing={isRevealing} />
         </div>
       </main>
+
+      {/* History Modal */}
+      <Modal isOpen={isHistoryOpen} onClose={() => {
+        setIsHistoryOpen(false);
+        setTimeout(() => document.activeElement?.blur(), 10);
+      }} title="Game History">
+        <History history={gameHistory} />
+        <div className="mt-4 flex justify-center">
+            <button
+                onClick={() => {
+                  setIsHistoryOpen(false);
+                  setTimeout(() => document.activeElement?.blur(), 10);
+                }}
+                className="w-full inline-flex justify-center rounded-md border border-transparent bg-indigo-600 text-white hover:bg-indigo-700 px-4 py-2 text-base font-medium shadow-sm focus:outline-none sm:text-sm"
+            >
+                Close
+            </button>
+        </div>
+      </Modal>
 
       {/* Statistics Modal (Manual Trigger) */}
       <Modal isOpen={isStatsOpen} onClose={() => {
